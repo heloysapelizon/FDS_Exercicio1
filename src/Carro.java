@@ -40,14 +40,29 @@ public class Carro {
         }
     }
 
+    private int getConsumoAtual() {
+        if (modelo == ModeloCarro.ECONO) {
+            return calcularConsumoEcono();
+        }
+        return motor.getConsumo();
+    }
+
     // Retorna true se conseguiu viajar
     public boolean viaja(int distancia) {
         if (verificaSePodeViajar(distancia) >= distancia) {
             motor.percorre(distancia);
-            tanque.gasta(motor.combustivelNecessario(distancia));
+            tanque.gasta(distancia / getConsumoAtual());
             return true;
         }
         return false;
+    }
+
+    private int calcularConsumoEcono() {
+        int baseConsumo = motor.getConsumo(); 
+        int decremento = 1;
+        int kmPercorridos = motor.getQuilometragem();
+        int consumoAtual = baseConsumo - (kmPercorridos / 5000) * decremento;
+        return Math.max(consumoAtual, 10);
     }
 
     @Override

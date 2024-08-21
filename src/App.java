@@ -31,6 +31,15 @@ public class App {
         SUV.viaja(300);
         System.out.println(SUV);
 
+        //Exercício 5
+        Carro econo = new Carro(ModeloCarro.ECONO, TipoCombustivel.FLEX, 20, 55);
+        System.out.println("\n\n----------------");
+        System.out.println("\nAbastecendo econo com gasolina");
+        econo.abastece(TipoCombustivel.GASOLINA, 45);
+        System.out.println(econo);
+        System.out.println("\nViajando com econo");
+        econo.viaja(300);
+        System.out.println(econo);
         
     }
 }
