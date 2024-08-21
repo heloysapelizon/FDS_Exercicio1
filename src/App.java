@@ -38,18 +38,18 @@ public class App {
 
         System.out.println("\n\n----------------");
         System.out.println("\nAbastecendo SUVFlex com gasolina");
-        suvFlex.abastece(TipoCombustivel.GASOLINA, 65); // Abastecendo com gasolina
+        suvFlex.abastece(TipoCombustivel.GASOLINA, 65);
         System.out.println(suvFlex);
         System.out.println("\nViajando com SUVFlex");
-        suvFlex.viaja(300); // Viaje com a capacidade de combustível atual
+        suvFlex.viaja(300); 
         System.out.println(suvFlex);
 
         System.out.println("\n\n----------------");
         System.out.println("\nAbastecendo SUVFlex com álcool");
-        suvFlex.abastece(TipoCombustivel.ALCOOL, 30); // Abastecendo com álcool
+        suvFlex.abastece(TipoCombustivel.ALCOOL, 30); 
         System.out.println(suvFlex);
         System.out.println("\nViajando com SUVFlex");
-        suvFlex.viaja(150); // Viaje com a capacidade de combustível atual
+        suvFlex.viaja(150); 
         System.out.println(suvFlex);
 
 
