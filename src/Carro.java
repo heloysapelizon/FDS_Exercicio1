@@ -32,16 +32,22 @@ public class Carro {
 
     // Retorna a distancia que consegue viajar com o combustivel remanescente
     public int verificaSePodeViajar(int distancia) {
-        int combustivelNecessario = motor.combustivelNecessario(distancia);
+        int consumoAtual = getConsumoAtual();
+        if (consumoAtual <= 0) {
+            throw new IllegalArgumentException("Consumo do combustível deve ser maior que zero.");
+        }
+        int combustivelNecessario = distancia / consumoAtual;
         if (tanque.getCombustivelDisponivel() >= combustivelNecessario) {
             return distancia;
         } else {
-            return tanque.getCombustivelDisponivel() * motor.getConsumo();
+            return tanque.getCombustivelDisponivel() * consumoAtual;
         }
     }
 
     private int getConsumoAtual() {
-        if (modelo == ModeloCarro.ECONO) {
+        if (modelo == ModeloCarro.SUVFLEX) {
+            return calcularConsumoSUVFlex();
+        } else if (modelo == ModeloCarro.ECONO) {
             return calcularConsumoEcono();
         }
         return motor.getConsumo();
@@ -63,6 +69,15 @@ public class Carro {
         int kmPercorridos = motor.getQuilometragem();
         int consumoAtual = baseConsumo - (kmPercorridos / 5000) * decremento;
         return Math.max(consumoAtual, 10);
+    }
+
+    private int calcularConsumoSUVFlex() {
+        if (tanque.getTipoCombustivel() == TipoCombustivel.GASOLINA) {
+            return 8; 
+        } else if (tanque.getTipoCombustivel() == TipoCombustivel.ALCOOL) {
+            return 6; 
+        }
+        return 0; 
     }
 
     @Override
